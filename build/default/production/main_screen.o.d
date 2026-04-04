@@ -18,7 +18,9 @@ build/default/production/main_screen.o.d \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\math.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\stdio.h \
  c:\program\ files\microchip\xc8\v3.10\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
- twi.h ssd1306.h Si5351.h inputs.h \
+ c:\program\ files\microchip\xc8\v3.10\avr\avr\include\string.h \
+ c:\program\ files\microchip\xc8\v3.10\avr\avr\include\stdlib.h twi.h \
+ ssd1306.h Si5351.h inputs.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\interrupt.h \
  uart.h
 
@@ -57,6 +59,10 @@ c:\program\ files\microchip\xc8\v3.10\avr\avr\include\math.h:
 c:\program\ files\microchip\xc8\v3.10\avr\avr\include\stdio.h:
 
 c:\program\ files\microchip\xc8\v3.10\avr\lib\gcc\avr\5.4.0\include\stdbool.h:
+
+c:\program\ files\microchip\xc8\v3.10\avr\avr\include\string.h:
+
+c:\program\ files\microchip\xc8\v3.10\avr\avr\include\stdlib.h:
 
 twi.h:
 

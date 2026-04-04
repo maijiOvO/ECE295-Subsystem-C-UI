@@ -8,23 +8,23 @@ volatile bool cmd_ready = false;
 
 void UART_Init(void) {
     // 1MHz ????9600 ???? UBRR ?? 12
-    UBRR0H = 0;
-    UBRR0L = 12;
+    UBRR1H = 0;
+    UBRR1L = 12;
 
     // ?????? (????? 0)
-    UCSR0A |= (1 << U2X);
+    UCSR1A |= (1 << U2X);
 
     // ????(RXEN)?????(TXEN)?????????(RXCIE)
-    UCSR0B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
+    UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
 
     // ?????: 8??????????1????
-    UCSR0C = (1 << UCSZ1) | (1 << UCSZ0);
+    UCSR1C = (1 << UCSZ1) | (1 << UCSZ0);
 }
 
 void UART_SendChar(char c) {
     // ????????? (????? 0)
-    while (!(UCSR0A & (1 << UDRE)));
-    UDR0 = c;
+    while (!(UCSR1A & (1 << UDRE)));
+    UDR1 = c;
 }
 
 void UART_SendString(const char* str) {
@@ -39,8 +39,8 @@ void UART_ResetBuffer(void) {
 }
 
 // 串口接收中断服务程序 (收到一个字符就会自动触发)
-ISR(USART0_RX_vect) {
-    char c = UDR0;
+ISR(USART1_RX_vect) {
+    char c = UDR1;
     
     // 如果主循环还没处理完上一条命令，丢弃新数据
     if (cmd_ready) return; 

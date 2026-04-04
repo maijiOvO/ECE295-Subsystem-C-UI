@@ -3,6 +3,8 @@
 #include <util/delay.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>  // using strcmp
+#include <stdlib.h>  // atol char -> int
 
 #include "twi.h"
 #include "ssd1306.h"
@@ -10,6 +12,8 @@
 #include "inputs.h"
 #include <avr/interrupt.h> // 需要用到 sei()
 #include "uart.h"
+
+uint32_t vfo_b_freq = 14000000UL;
 
 // ================= UI Definitions =================
 
@@ -51,7 +55,6 @@ const uint8_t char_pos_map[8] = {0, 1, 3, 4, 5, 7, 8, 9};
 // Blink control variables
 bool blink_state = true;
 uint16_t blink_timer = 0;
-
 // ================= Display Functions =================
 
 uint8_t Get_Draw_Mode(uint8_t row_id) {
@@ -127,10 +130,10 @@ void Update_Left_Screen(InputEvent_t event) {
     else if (ui_state == STATE_EDIT) state_str = "EDIT  ";
     
     sprintf(buf, "State: %s", state_str);
-    OLED_ShowString(SCREEN_L_ADDR, 0, 0, buf, OLED_MODE_NORMAL);
+    OLED_ShowString(SCREEN_L_ADDR, 1, 0, buf, OLED_MODE_NORMAL);// 0 ->1
     
     if (event != EVENT_NONE) {
-        OLED_ShowString(SCREEN_L_ADDR, 0, 3, "                ", OLED_MODE_NORMAL);
+        OLED_ShowString(SCREEN_L_ADDR, 1, 2, "                ", OLED_MODE_NORMAL);
         switch(event) {
             case JOY_UP:    OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: UP", OLED_MODE_INVERT); break;
             case JOY_DOWN:  OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: DOWN", OLED_MODE_INVERT); break;
@@ -199,15 +202,81 @@ void Update_Si5351_Freq(uint32_t target_freq) {
     si5351_write_reg(SI5351_REGISTER_177_PLL_RESET, SI5351_PLL_RESET_A);
 }
 // ================= Main Program =================
+// ================= CAT ?????? =================
+void Parse_CAT_Command(char* cmd) {
+    char response[64];
+
+    // 1. ?? TX ?? (??????)
+    if (strncmp(cmd, "TX", 2) == 0) {
+        if (cmd[2] == ';') { 
+            // ??????
+            sprintf(response, "TX%d;", (radio_mode == MODE_TX) ? 1 : 0);
+            UART_SendString(response);
+        } else if (cmd[2] == '0' || cmd[2] == '1') { 
+            // ????
+            if (cmd[2] == '1') {
+                radio_mode = MODE_TX;
+                TXEN_PORT &= ~(1 << TXEN_PIN); // ???????????
+            } else {
+                radio_mode = MODE_RX;
+                TXEN_PORT |= (1 << TXEN_PIN);  // ???????????
+            }
+        }
+    }
+    
+    // 2. ?? FA ?? (??????)
+    else if (strncmp(cmd, "FA", 2) == 0) {
+        if (cmd[2] == ';') { 
+            // ?????????? 9 ???????
+            sprintf(response, "FA%09lu;", current_freq);
+            UART_SendString(response);
+        } else { 
+            // ????????????2????????
+            uint32_t new_freq = atol(&cmd[2]);
+            if (new_freq >= 1000000UL && new_freq <= 30000000UL) { // ????
+                current_freq = new_freq;
+                Update_Si5351_Freq(current_freq); // ???????????
+            }
+        }
+    }
+    
+    // 3. ?? FB ?? (?????ICD ????????????)
+    else if (strncmp(cmd, "FB", 2) == 0) {
+        if (cmd[2] == ';') {
+            sprintf(response, "FB%09lu;", vfo_b_freq);
+            UART_SendString(response);
+        } else {
+            vfo_b_freq = atol(&cmd[2]);
+        }
+    }
+    
+    // 4. ?? IF ?? (????????????)
+    else if (strncmp(cmd, "IF;", 3) == 0) {
+        // ? ICD ?42?????? 28 ???????
+        sprintf(response, "IF001%09lu+000000C00000;", current_freq);
+        UART_SendString(response);
+    }
+    
+    // 5. ?????? (???????????????? Yaesu ??)
+    else if (strncmp(cmd, "ID;", 3) == 0) UART_SendString("ID0650;");
+    else if (strncmp(cmd, "MD0;", 4) == 0) UART_SendString("MD0C;");
+    else if (strncmp(cmd, "SH0;", 4) == 0) UART_SendString("SH0000;");
+    else if (strncmp(cmd, "NA0;", 4) == 0) UART_SendString("NA00;");
+    else if (strncmp(cmd, "AI", 2) == 0) {
+        // AI ?????????????????? 0
+        if (cmd[2] == ';') UART_SendString("AI0;"); 
+    }
+}
 
 int main(void) {
-    twi_init();
-    Inputs_Init();
 
     UART_Init();   // 初始化串口
     sei();         // 开启全局中断（极其重要，否则接收不到数据）
     UART_SendString("FLRTRX Radio Initialized!\r\n"); // 启动时给电脑发个问候语
 
+    twi_init();
+    Inputs_Init();
+    
     //init pll
     si5351_init();
     Update_Si5351_Freq(current_freq);
@@ -229,17 +298,17 @@ int main(void) {
         bool force_update = false;
 
         if (cmd_ready) {
-            // 1. 把收到的命令原样弹回电脑，前面加个 ECHO 证明单片机收到了
-            UART_SendString("ECHO: ");
-            UART_SendString((char*)rx_buffer);
-            UART_SendString(";\r\n");
+            // ????????????????
+            Parse_CAT_Command((char*)rx_buffer);
 
-            // 2. 为了直观，我们把它显示在左侧 Debug 屏幕的最后一行
-            OLED_ShowString(SCREEN_L_ADDR, 0, 6, "                ", OLED_MODE_NORMAL); // 先清空行
+            // ?????????????????????
+            OLED_ShowString(SCREEN_L_ADDR, 0, 6, "                ", OLED_MODE_NORMAL);
             OLED_ShowString(SCREEN_L_ADDR, 0, 6, (char*)rx_buffer, OLED_MODE_INVERT);
 
-            // 3. 处理完毕，重置缓存区准备迎接下一条命令
+            // ???????????????????
             UART_ResetBuffer();
+            
+            // ?????????????????????????
             force_update = true;
         }
 
