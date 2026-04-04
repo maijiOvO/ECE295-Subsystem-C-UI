@@ -1,0 +1,11 @@
+configVersion: 1.0.0
+coreVersion: 5.8.4
+spaHostVersion: 1.2.1
+device: ATSAMA5D21
+deviceLibrary: {}
+groupModules: []
+modules:
+- cmsis
+- core
+- dfp
+generatedFileHashHistoryMap: []
