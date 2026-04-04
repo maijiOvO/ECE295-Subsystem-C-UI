@@ -8,6 +8,8 @@
 #include "ssd1306.h"
 #include "Si5351.h"
 #include "inputs.h"
+#include <avr/interrupt.h> // 需要用到 sei()
+#include "uart.h"
 
 // ================= UI Definitions =================
 
@@ -200,7 +202,12 @@ void Update_Si5351_Freq(uint32_t target_freq) {
 
 int main(void) {
     twi_init();
-    Inputs_Init(); 
+    Inputs_Init();
+
+    UART_Init();   // 初始化串口
+    sei();         // 开启全局中断（极其重要，否则接收不到数据）
+    UART_SendString("FLRTRX Radio Initialized!\r\n"); // 启动时给电脑发个问候语
+
     //init pll
     si5351_init();
     Update_Si5351_Freq(current_freq);
@@ -220,6 +227,21 @@ int main(void) {
     while(1) {
         InputEvent_t event = Inputs_Scan();
         bool force_update = false;
+
+        if (cmd_ready) {
+            // 1. 把收到的命令原样弹回电脑，前面加个 ECHO 证明单片机收到了
+            UART_SendString("ECHO: ");
+            UART_SendString((char*)rx_buffer);
+            UART_SendString(";\r\n");
+
+            // 2. 为了直观，我们把它显示在左侧 Debug 屏幕的最后一行
+            OLED_ShowString(SCREEN_L_ADDR, 0, 6, "                ", OLED_MODE_NORMAL); // 先清空行
+            OLED_ShowString(SCREEN_L_ADDR, 0, 6, (char*)rx_buffer, OLED_MODE_INVERT);
+
+            // 3. 处理完毕，重置缓存区准备迎接下一条命令
+            UART_ResetBuffer();
+            force_update = true;
+        }
 
         // ================= State Machine =================
         switch (ui_state) {
