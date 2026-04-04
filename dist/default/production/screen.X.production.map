@@ -978,15 +978,15 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x5e36
+.debug_info     0x0000000000000000     0x5e24
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x9bb D:/apps/MPLAB/packs/Microchip/ATmega_DFP/3.5.296/xc8/avr/lib/avr5/crtatmega324pb.o
- .debug_info    0x00000000000009bb     0x214b build/default/production/main_screen.o
- .debug_info    0x0000000000002b06      0x3ef build/default/production/twi.o
- .debug_info    0x0000000000002ef5      0xb9e build/default/production/ssd1306.o
- .debug_info    0x0000000000003a93      0x5a6 build/default/production/inputs.o
- .debug_info    0x0000000000004039     0x1a9c build/default/production/Si5351.o
- .debug_info    0x0000000000005ad5      0x361 build/default/production/uart.o
+ .debug_info    0x00000000000009bb     0x2139 build/default/production/main_screen.o
+ .debug_info    0x0000000000002af4      0x3ef build/default/production/twi.o
+ .debug_info    0x0000000000002ee3      0xb9e build/default/production/ssd1306.o
+ .debug_info    0x0000000000003a81      0x5a6 build/default/production/inputs.o
+ .debug_info    0x0000000000004027     0x1a9c build/default/production/Si5351.o
+ .debug_info    0x0000000000005ac3      0x361 build/default/production/uart.o
 
 .debug_abbrev   0x0000000000000000     0x129c
  *(.debug_abbrev)
@@ -998,15 +998,15 @@ END GROUP
  .debug_abbrev  0x0000000000000f64      0x266 build/default/production/Si5351.o
  .debug_abbrev  0x00000000000011ca       0xd2 build/default/production/uart.o
 
-.debug_line     0x0000000000000000     0x1705
+.debug_line     0x0000000000000000     0x170b
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x1ca D:/apps/MPLAB/packs/Microchip/ATmega_DFP/3.5.296/xc8/avr/lib/avr5/crtatmega324pb.o
- .debug_line    0x00000000000001ca      0x76b build/default/production/main_screen.o
- .debug_line    0x0000000000000935      0x248 build/default/production/twi.o
- .debug_line    0x0000000000000b7d      0x302 build/default/production/ssd1306.o
- .debug_line    0x0000000000000e7f      0x253 build/default/production/inputs.o
- .debug_line    0x00000000000010d2      0x4dd build/default/production/Si5351.o
- .debug_line    0x00000000000015af      0x156 build/default/production/uart.o
+ .debug_line    0x00000000000001ca      0x771 build/default/production/main_screen.o
+ .debug_line    0x000000000000093b      0x248 build/default/production/twi.o
+ .debug_line    0x0000000000000b83      0x302 build/default/production/ssd1306.o
+ .debug_line    0x0000000000000e85      0x253 build/default/production/inputs.o
+ .debug_line    0x00000000000010d8      0x4dd build/default/production/Si5351.o
+ .debug_line    0x00000000000015b5      0x156 build/default/production/uart.o
 
 .debug_frame    0x0000000000000000      0x674
  *(.debug_frame)
@@ -1139,585 +1139,585 @@ LOAD data_init
                 0x000000000000056e      0x3b2 build/default/production/Si5351.o
                 0x000000000000056e                setup_clock
 
-.text.main      0x0000000000000920      0x34e
- .text.main     0x0000000000000920      0x34e build/default/production/main_screen.o
+.text.main      0x0000000000000920      0x34c
+ .text.main     0x0000000000000920      0x34c build/default/production/main_screen.o
                 0x0000000000000920                main
 
 .text.Parse_CAT_Command
-                0x0000000000000c6e      0x292
+                0x0000000000000c6c      0x29a
  .text.Parse_CAT_Command
-                0x0000000000000c6e      0x292 build/default/production/main_screen.o
-                0x0000000000000c6e                Parse_CAT_Command
+                0x0000000000000c6c      0x29a build/default/production/main_screen.o
+                0x0000000000000c6c                Parse_CAT_Command
 
 .text.setup_PLL
-                0x0000000000000f00      0x234
+                0x0000000000000f06      0x234
  .text.setup_PLL
-                0x0000000000000f00      0x234 build/default/production/Si5351.o
-                0x0000000000000f00                setup_PLL
+                0x0000000000000f06      0x234 build/default/production/Si5351.o
+                0x0000000000000f06                setup_PLL
 
-.text.__fmt_x   0x0000000000001134      0x1dc
- .text.__fmt_x  0x0000000000001134      0x1dc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_x.o)
-                0x0000000000001134                __fmt_x_needed
-                0x0000000000001134                __fmt_x
+.text.__fmt_x   0x000000000000113a      0x1dc
+ .text.__fmt_x  0x000000000000113a      0x1dc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_x.o)
+                0x000000000000113a                __fmt_x_needed
+                0x000000000000113a                __fmt_x
 
 .text.Update_Si5351_Freq
-                0x0000000000001310      0x18c
+                0x0000000000001316      0x18c
  .text.Update_Si5351_Freq
-                0x0000000000001310      0x18c build/default/production/main_screen.o
-                0x0000000000001310                Update_Si5351_Freq
+                0x0000000000001316      0x18c build/default/production/main_screen.o
+                0x0000000000001316                Update_Si5351_Freq
 
 .text.Draw_Frequency
-                0x000000000000149c      0x156
+                0x00000000000014a2      0x156
  .text.Draw_Frequency
-                0x000000000000149c      0x156 build/default/production/main_screen.o
-                0x000000000000149c                Draw_Frequency
+                0x00000000000014a2      0x156 build/default/production/main_screen.o
+                0x00000000000014a2                Draw_Frequency
 
 .text.Update_Left_Screen
-                0x00000000000015f2      0x142
+                0x00000000000015f8      0x142
  .text.Update_Left_Screen
-                0x00000000000015f2      0x142 build/default/production/main_screen.o
-                0x00000000000015f2                Update_Left_Screen
+                0x00000000000015f8      0x142 build/default/production/main_screen.o
+                0x00000000000015f8                Update_Left_Screen
 
-.text.floorf    0x0000000000001734       0xe8
- .text.floorf   0x0000000000001734       0xe8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floorf.o)
-                0x0000000000001734                floorf
+.text.floorf    0x000000000000173a       0xe8
+ .text.floorf   0x000000000000173a       0xe8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floorf.o)
+                0x000000000000173a                floorf
 
-.text.__fmt_d   0x000000000000181c       0xe4
- .text.__fmt_d  0x000000000000181c       0xe4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_d.o)
-                0x000000000000181c                __fmt_d
-                0x000000000000181c                __fmt_d_needed
+.text.__fmt_d   0x0000000000001822       0xe4
+ .text.__fmt_d  0x0000000000001822       0xe4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_d.o)
+                0x0000000000001822                __fmt_d
+                0x0000000000001822                __fmt_d_needed
+
+.text           0x0000000000001906       0xde
+ .text          0x0000000000001906       0xde c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x0000000000001906                __divsf3x
+                0x000000000000192e                __divsf3_pse
 
 .text.Update_Right_Screen
-                0x0000000000001900       0xe0
+                0x00000000000019e4       0xd8
  .text.Update_Right_Screen
-                0x0000000000001900       0xe0 build/default/production/main_screen.o
-                0x0000000000001900                Update_Right_Screen
+                0x00000000000019e4       0xd8 build/default/production/main_screen.o
+                0x00000000000019e4                Update_Right_Screen
 
-.text           0x00000000000019e0       0xde
- .text          0x00000000000019e0       0xde c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x00000000000019e0                __divsf3x
-                0x0000000000001a08                __divsf3_pse
-
-.text           0x0000000000001abe       0xd4
- .text          0x0000000000001abe       0xd4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x0000000000001abe                __mulsf3x
-                0x0000000000001ae4                __mulsf3_pse
+.text           0x0000000000001abc       0xd4
+ .text          0x0000000000001abc       0xd4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x0000000000001abc                __mulsf3x
+                0x0000000000001ae2                __mulsf3_pse
 
 .text.__pop_int
-                0x0000000000001b92       0xd0
+                0x0000000000001b90       0xd0
  .text.__pop_int
-                0x0000000000001b92       0xd0 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__pop_int.o)
-                0x0000000000001b92                __pop_int_needed
-                0x0000000000001b92                __pop_int
+                0x0000000000001b90       0xd0 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__pop_int.o)
+                0x0000000000001b90                __pop_int_needed
+                0x0000000000001b90                __pop_int
 
 .text.OLED_Init
-                0x0000000000001c62       0xce
+                0x0000000000001c60       0xce
  .text.OLED_Init
-                0x0000000000001c62       0xce build/default/production/ssd1306.o
-                0x0000000000001c62                OLED_Init
+                0x0000000000001c60       0xce build/default/production/ssd1306.o
+                0x0000000000001c60                OLED_Init
 
-.text           0x0000000000001d30       0xce
- .text          0x0000000000001d30       0xce c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x0000000000001d30                __addsf3x
+.text           0x0000000000001d2e       0xce
+ .text          0x0000000000001d2e       0xce c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x0000000000001d2e                __addsf3x
 
-.text.__cvt_u   0x0000000000001dfe       0xca
- .text.__cvt_u  0x0000000000001dfe       0xca c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_u.o)
-                0x0000000000001dfe                __cvt_u
+.text.__cvt_u   0x0000000000001dfc       0xca
+ .text.__cvt_u  0x0000000000001dfc       0xca c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_u.o)
+                0x0000000000001dfc                __cvt_u
 
 .text.Inputs_Scan
-                0x0000000000001ec8       0xbe
+                0x0000000000001ec6       0xbe
  .text.Inputs_Scan
-                0x0000000000001ec8       0xbe build/default/production/inputs.o
-                0x0000000000001ec8                Inputs_Scan
+                0x0000000000001ec6       0xbe build/default/production/inputs.o
+                0x0000000000001ec6                Inputs_Scan
 
 .text.si5351_init
-                0x0000000000001f86       0xb6
+                0x0000000000001f84       0xb6
  .text.si5351_init
-                0x0000000000001f86       0xb6 build/default/production/Si5351.o
-                0x0000000000001f86                si5351_init
+                0x0000000000001f84       0xb6 build/default/production/Si5351.o
+                0x0000000000001f84                si5351_init
 
-.text.__fmt_o   0x000000000000203c       0xb2
- .text.__fmt_o  0x000000000000203c       0xb2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_o.o)
-                0x000000000000203c                __fmt_o
-                0x000000000000203c                __fmt_o_needed
+.text.__fmt_o   0x000000000000203a       0xb2
+ .text.__fmt_o  0x000000000000203a       0xb2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_o.o)
+                0x000000000000203a                __fmt_o
+                0x000000000000203a                __fmt_o_needed
 
-.text.atol      0x00000000000020ee       0xa0
- .text.atol     0x00000000000020ee       0xa0 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atol.o)
-                0x00000000000020ee                atol
+.text.atol      0x00000000000020ec       0xa0
+ .text.atol     0x00000000000020ec       0xa0 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(atol.o)
+                0x00000000000020ec                atol
 
-.text.fputc     0x000000000000218e       0x98
- .text.fputc    0x000000000000218e       0x98 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x000000000000218e                fputc
-                0x000000000000218e                putc
+.text.fputc     0x000000000000218c       0x98
+ .text.fputc    0x000000000000218c       0x98 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x000000000000218c                fputc
+                0x000000000000218c                putc
 
-.text.__fmt_u   0x0000000000002226       0x8e
- .text.__fmt_u  0x0000000000002226       0x8e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_u.o)
-                0x0000000000002226                __fmt_u_needed
-                0x0000000000002226                __fmt_u
+.text.__fmt_u   0x0000000000002224       0x8e
+ .text.__fmt_u  0x0000000000002224       0x8e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_u.o)
+                0x0000000000002224                __fmt_u_needed
+                0x0000000000002224                __fmt_u
 
 .text.OLED_ShowChar
-                0x00000000000022b4       0x7a
+                0x00000000000022b2       0x7a
  .text.OLED_ShowChar
-                0x00000000000022b4       0x7a build/default/production/ssd1306.o
-                0x00000000000022b4                OLED_ShowChar
+                0x00000000000022b2       0x7a build/default/production/ssd1306.o
+                0x00000000000022b2                OLED_ShowChar
 
-.text           0x000000000000232e       0x7a
- .text          0x000000000000232e       0x7a c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x000000000000232e                __floatunsisf
-                0x0000000000002332                __floatsisf
+.text           0x000000000000232c       0x7a
+ .text          0x000000000000232c       0x7a c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000000000000232c                __floatunsisf
+                0x0000000000002330                __floatsisf
 
 .text.__vsnprintf
-                0x00000000000023a8       0x74
+                0x00000000000023a6       0x74
  .text.__vsnprintf
-                0x00000000000023a8       0x74 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vsnprintf.o)
-                0x00000000000023a8                __vsnprintf
+                0x00000000000023a6       0x74 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vsnprintf.o)
+                0x00000000000023a6                __vsnprintf
 
-.text.__pad     0x000000000000241c       0x72
- .text.__pad    0x000000000000241c       0x72 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
-                0x000000000000241c                __pad
+.text.__pad     0x000000000000241a       0x72
+ .text.__pad    0x000000000000241a       0x72 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
+                0x000000000000241a                __pad
 
-.text.read      0x000000000000248e       0x68
- .text.read     0x000000000000248e       0x68 build/default/production/Si5351.o
+.text.read      0x000000000000248c       0x68
+ .text.read     0x000000000000248c       0x68 build/default/production/Si5351.o
 
 .text.__vector_28
-                0x00000000000024f6       0x68
+                0x00000000000024f4       0x68
  .text.__vector_28
-                0x00000000000024f6       0x68 build/default/production/uart.o
-                0x00000000000024f6                __vector_28
+                0x00000000000024f4       0x68 build/default/production/uart.o
+                0x00000000000024f4                __vector_28
 
 .text.__printf_core
-                0x000000000000255e       0x68
+                0x000000000000255c       0x68
  .text.__printf_core
-                0x000000000000255e       0x68 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
-                0x000000000000255e                __printf_core
+                0x000000000000255c       0x68 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
+                0x000000000000255c                __printf_core
 
 .text.OLED_Fill
-                0x00000000000025c6       0x62
+                0x00000000000025c4       0x62
  .text.OLED_Fill
-                0x00000000000025c6       0x62 build/default/production/ssd1306.o
-                0x00000000000025c6                OLED_Fill
+                0x00000000000025c4       0x62 build/default/production/ssd1306.o
+                0x00000000000025c4                OLED_Fill
 
-.text           0x0000000000002628       0x5e
- .text          0x0000000000002628       0x5e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x0000000000002628                __fixunssfsi
+.text           0x0000000000002626       0x5e
+ .text          0x0000000000002626       0x5e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x0000000000002626                __fixunssfsi
 
 .text.read_prec_or_width
-                0x0000000000002686       0x5c
+                0x0000000000002684       0x5c
  .text.read_prec_or_width
-                0x0000000000002686       0x5c c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
+                0x0000000000002684       0x5c c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
 
 .text.OLED_ShowString
-                0x00000000000026e2       0x5a
+                0x00000000000026e0       0x5a
  .text.OLED_ShowString
-                0x00000000000026e2       0x5a build/default/production/ssd1306.o
-                0x00000000000026e2                OLED_ShowString
+                0x00000000000026e0       0x5a build/default/production/ssd1306.o
+                0x00000000000026e0                OLED_ShowString
 
-.text.__fmt_s   0x000000000000273c       0x54
- .text.__fmt_s  0x000000000000273c       0x54 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_s.o)
-                0x000000000000273c                __fmt_s
-                0x000000000000273c                __fmt_0_needed
-                0x000000000000273c                __fmt_s_needed
+.text.__fmt_s   0x000000000000273a       0x54
+ .text.__fmt_s  0x000000000000273a       0x54 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_s.o)
+                0x000000000000273a                __fmt_s
+                0x000000000000273a                __fmt_0_needed
+                0x000000000000273a                __fmt_s_needed
 
-.text           0x0000000000002790       0x44
- .text          0x0000000000002790       0x44 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x0000000000002790                __fp_split3
-                0x00000000000027a0                __fp_splitA
+.text           0x000000000000278e       0x44
+ .text          0x000000000000278e       0x44 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x000000000000278e                __fp_split3
+                0x000000000000279e                __fp_splitA
 
 .text.libgcc.div
-                0x00000000000027d4       0x44
+                0x00000000000027d2       0x44
  .text.libgcc.div
-                0x00000000000027d4       0x44 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000000000027d4                __udivmodsi4
+                0x00000000000027d2       0x44 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000000000027d2                __udivmodsi4
 
 .text.__fmt_state
-                0x0000000000002818       0x40
+                0x0000000000002816       0x40
  .text.__fmt_state
-                0x0000000000002818       0x40 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
-                0x0000000000002818                __fmt_state
+                0x0000000000002816       0x40 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
+                0x0000000000002816                __fmt_state
 
 .text.Inputs_Init
-                0x0000000000002858       0x3e
+                0x0000000000002856       0x3e
  .text.Inputs_Init
-                0x0000000000002858       0x3e build/default/production/inputs.o
-                0x0000000000002858                Inputs_Init
+                0x0000000000002856       0x3e build/default/production/inputs.o
+                0x0000000000002856                Inputs_Init
 
-.text.strncmp   0x0000000000002896       0x3e
- .text.strncmp  0x0000000000002896       0x3e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
-                0x0000000000002896                strncmp
+.text.strncmp   0x0000000000002894       0x3e
+ .text.strncmp  0x0000000000002894       0x3e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncmp.o)
+                0x0000000000002894                strncmp
 
-.text.__out     0x00000000000028d4       0x3a
- .text.__out    0x00000000000028d4       0x3a c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
-                0x00000000000028d4                __out
+.text.__out     0x00000000000028d2       0x3a
+ .text.__out    0x00000000000028d2       0x3a c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
+                0x00000000000028d2                __out
 
 .text.libgcc.prologue
-                0x000000000000290e       0x38
+                0x000000000000290c       0x38
  .text.libgcc.prologue
-                0x000000000000290e       0x38 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x000000000000290e                __prologue_saves__
+                0x000000000000290c       0x38 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x000000000000290c                __prologue_saves__
 
 .text.Get_Draw_Mode
-                0x0000000000002946       0x36
+                0x0000000000002944       0x36
  .text.Get_Draw_Mode
-                0x0000000000002946       0x36 build/default/production/main_screen.o
-                0x0000000000002946                Get_Draw_Mode
+                0x0000000000002944       0x36 build/default/production/main_screen.o
+                0x0000000000002944                Get_Draw_Mode
 
 .text.libgcc.prologue
-                0x000000000000297c       0x36
+                0x000000000000297a       0x36
  .text.libgcc.prologue
-                0x000000000000297c       0x36 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x000000000000297c                __epilogue_restores__
+                0x000000000000297a       0x36 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x000000000000297a                __epilogue_restores__
 
-.text.ADC_Read  0x00000000000029b2       0x30
+.text.ADC_Read  0x00000000000029b0       0x30
  .text.ADC_Read
-                0x00000000000029b2       0x30 build/default/production/inputs.o
-                0x00000000000029b2                ADC_Read
+                0x00000000000029b0       0x30 build/default/production/inputs.o
+                0x00000000000029b0                ADC_Read
 
 .text.__vfprintf
-                0x00000000000029e2       0x30
+                0x00000000000029e0       0x30
  .text.__vfprintf
-                0x00000000000029e2       0x30 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vfprintf.o)
-                0x00000000000029e2                __vfprintf
+                0x00000000000029e0       0x30 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vfprintf.o)
+                0x00000000000029e0                __vfprintf
 
 .text.OLED_SetPos
-                0x0000000000002a12       0x2e
+                0x0000000000002a10       0x2e
  .text.OLED_SetPos
-                0x0000000000002a12       0x2e build/default/production/ssd1306.o
-                0x0000000000002a12                OLED_SetPos
+                0x0000000000002a10       0x2e build/default/production/ssd1306.o
+                0x0000000000002a10                OLED_SetPos
 
 .text.twi_start
-                0x0000000000002a40       0x2a
+                0x0000000000002a3e       0x2a
  .text.twi_start
-                0x0000000000002a40       0x2a build/default/production/twi.o
-                0x0000000000002a40                twi_start
+                0x0000000000002a3e       0x2a build/default/production/twi.o
+                0x0000000000002a3e                twi_start
 
 .text.si5351_write_reg
-                0x0000000000002a6a       0x28
+                0x0000000000002a68       0x28
  .text.si5351_write_reg
-                0x0000000000002a6a       0x28 build/default/production/main_screen.o
-                0x0000000000002a6a                si5351_write_reg
+                0x0000000000002a68       0x28 build/default/production/main_screen.o
+                0x0000000000002a68                si5351_write_reg
 
-.text.twi_init  0x0000000000002a92       0x28
+.text.twi_init  0x0000000000002a90       0x28
  .text.twi_init
-                0x0000000000002a92       0x28 build/default/production/twi.o
-                0x0000000000002a92                twi_init
+                0x0000000000002a90       0x28 build/default/production/twi.o
+                0x0000000000002a90                twi_init
 
 .text.Write_Cmd
-                0x0000000000002aba       0x28
+                0x0000000000002ab8       0x28
  .text.Write_Cmd
-                0x0000000000002aba       0x28 build/default/production/ssd1306.o
+                0x0000000000002ab8       0x28 build/default/production/ssd1306.o
 
-.text.write     0x0000000000002ae2       0x28
- .text.write    0x0000000000002ae2       0x28 build/default/production/Si5351.o
-
-.text.__wrap_sprintf
-                0x0000000000002b0a       0x24
- .text.__wrap_sprintf
-                0x0000000000002b0a       0x24 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__sio_sprintf_dosux.o)
-                0x0000000000002b0a                _sprintf_cdopsuxX
+.text.write     0x0000000000002ae0       0x28
+ .text.write    0x0000000000002ae0       0x28 build/default/production/Si5351.o
 
 .text.__wrap_sprintf
-                0x0000000000002b2e       0x24
+                0x0000000000002b08       0x24
  .text.__wrap_sprintf
-                0x0000000000002b2e       0x24 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__sio_sprintf_doux.o)
-                0x0000000000002b2e                _sprintf_cdopuxX
+                0x0000000000002b08       0x24 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__sio_sprintf_dosux.o)
+                0x0000000000002b08                _sprintf_cdopsuxX
+
+.text.__wrap_sprintf
+                0x0000000000002b2c       0x24
+ .text.__wrap_sprintf
+                0x0000000000002b2c       0x24 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__sio_sprintf_doux.o)
+                0x0000000000002b2c                _sprintf_cdopuxX
 
 .text.twi_MT_SLA_W
-                0x0000000000002b52       0x22
+                0x0000000000002b50       0x22
  .text.twi_MT_SLA_W
-                0x0000000000002b52       0x22 build/default/production/twi.o
-                0x0000000000002b52                twi_MT_SLA_W
+                0x0000000000002b50       0x22 build/default/production/twi.o
+                0x0000000000002b50                twi_MT_SLA_W
 
 .text.UART_Init
-                0x0000000000002b74       0x22
+                0x0000000000002b72       0x22
  .text.UART_Init
-                0x0000000000002b74       0x22 build/default/production/uart.o
-                0x0000000000002b74                UART_Init
+                0x0000000000002b72       0x22 build/default/production/uart.o
+                0x0000000000002b72                UART_Init
 
-.text           0x0000000000002b96       0x22
- .text          0x0000000000002b96       0x22 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x0000000000002b96                __fp_round
+.text           0x0000000000002b94       0x22
+ .text          0x0000000000002b94       0x22 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x0000000000002b94                __fp_round
 
 .text.libgcc.mul
-                0x0000000000002bb8       0x20
+                0x0000000000002bb6       0x20
  .text.libgcc.mul
-                0x0000000000002bb8       0x20 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulsi3.o)
-                0x0000000000002bb8                __mulsi3
+                0x0000000000002bb6       0x20 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulsi3.o)
+                0x0000000000002bb6                __mulsi3
 
 .text.twi_MR_SLA_R
-                0x0000000000002bd8       0x1e
+                0x0000000000002bd6       0x1e
  .text.twi_MR_SLA_R
-                0x0000000000002bd8       0x1e build/default/production/twi.o
-                0x0000000000002bd8                twi_MR_SLA_R
+                0x0000000000002bd6       0x1e build/default/production/twi.o
+                0x0000000000002bd6                twi_MR_SLA_R
 
 .text.UART_SendString
-                0x0000000000002bf6       0x1e
+                0x0000000000002bf4       0x1e
  .text.UART_SendString
-                0x0000000000002bf6       0x1e build/default/production/uart.o
-                0x0000000000002bf6                UART_SendString
+                0x0000000000002bf4       0x1e build/default/production/uart.o
+                0x0000000000002bf4                UART_SendString
 
 .text.libgcc.mul
-                0x0000000000002c14       0x1e
+                0x0000000000002c12       0x1e
  .text.libgcc.mul
-                0x0000000000002c14       0x1e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x0000000000002c14                __umulhisi3
+                0x0000000000002c12       0x1e c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x0000000000002c12                __umulhisi3
 
-.text.strlen    0x0000000000002c32       0x1c
- .text.strlen   0x0000000000002c32       0x1c c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strlen.o)
-                0x0000000000002c32                strlen
+.text.strlen    0x0000000000002c30       0x1c
+ .text.strlen   0x0000000000002c30       0x1c c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strlen.o)
+                0x0000000000002c30                strlen
 
 .text.twi_MT_write
-                0x0000000000002c4e       0x1a
+                0x0000000000002c4c       0x1a
  .text.twi_MT_write
-                0x0000000000002c4e       0x1a build/default/production/twi.o
-                0x0000000000002c4e                twi_MT_write
+                0x0000000000002c4c       0x1a build/default/production/twi.o
+                0x0000000000002c4c                twi_MT_write
 
 .text.twi_MR_read_NACK
-                0x0000000000002c68       0x16
+                0x0000000000002c66       0x16
  .text.twi_MR_read_NACK
-                0x0000000000002c68       0x16 build/default/production/twi.o
-                0x0000000000002c68                twi_MR_read_NACK
+                0x0000000000002c66       0x16 build/default/production/twi.o
+                0x0000000000002c66                twi_MR_read_NACK
 
-.text.ADC_Init  0x0000000000002c7e       0x16
+.text.ADC_Init  0x0000000000002c7c       0x16
  .text.ADC_Init
-                0x0000000000002c7e       0x16 build/default/production/inputs.o
-                0x0000000000002c7e                ADC_Init
+                0x0000000000002c7c       0x16 build/default/production/inputs.o
+                0x0000000000002c7c                ADC_Init
 
 .text.libgcc.mul
-                0x0000000000002c94       0x16
+                0x0000000000002c92       0x16
  .text.libgcc.mul
-                0x0000000000002c94       0x16 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x0000000000002c94                __muluhisi3
+                0x0000000000002c92       0x16 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x0000000000002c92                __muluhisi3
 
-.text.exit      0x0000000000002caa       0x16
- .text.exit     0x0000000000002caa       0x16 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000002caa                exit
+.text.exit      0x0000000000002ca8       0x16
+ .text.exit     0x0000000000002ca8       0x16 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000002ca8                exit
 
 .text.twi_repeat_start
-                0x0000000000002cc0       0x12
+                0x0000000000002cbe       0x12
  .text.twi_repeat_start
-                0x0000000000002cc0       0x12 build/default/production/twi.o
-                0x0000000000002cc0                twi_repeat_start
+                0x0000000000002cbe       0x12 build/default/production/twi.o
+                0x0000000000002cbe                twi_repeat_start
 
-.text.toupper   0x0000000000002cd2       0x12
- .text.toupper  0x0000000000002cd2       0x12 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(toupper.o)
-                0x0000000000002cd2                toupper
+.text.toupper   0x0000000000002cd0       0x12
+ .text.toupper  0x0000000000002cd0       0x12 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(toupper.o)
+                0x0000000000002cd0                toupper
 
 .text.enable_clocks
-                0x0000000000002ce4       0x10
+                0x0000000000002ce2       0x10
  .text.enable_clocks
-                0x0000000000002ce4       0x10 build/default/production/Si5351.o
-                0x0000000000002ce4                enable_clocks
+                0x0000000000002ce2       0x10 build/default/production/Si5351.o
+                0x0000000000002ce2                enable_clocks
 
 .text.UART_SendChar
-                0x0000000000002cf4       0x10
+                0x0000000000002cf2       0x10
  .text.UART_SendChar
-                0x0000000000002cf4       0x10 build/default/production/uart.o
-                0x0000000000002cf4                UART_SendChar
+                0x0000000000002cf2       0x10 build/default/production/uart.o
+                0x0000000000002cf2                UART_SendChar
 
-.text.tolower   0x0000000000002d04       0x10
- .text.tolower  0x0000000000002d04       0x10 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(tolower.o)
-                0x0000000000002d04                tolower
+.text.tolower   0x0000000000002d02       0x10
+ .text.tolower  0x0000000000002d02       0x10 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(tolower.o)
+                0x0000000000002d02                tolower
 
-.text           0x0000000000002d14        0xe
- .text          0x0000000000002d14        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x0000000000002d14                __subsf3
-                0x0000000000002d16                __addsf3
+.text           0x0000000000002d12        0xe
+ .text          0x0000000000002d12        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x0000000000002d12                __subsf3
+                0x0000000000002d14                __addsf3
 
-.text           0x0000000000002d22        0xe
- .text          0x0000000000002d22        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x0000000000002d22                __fp_pscA
+.text           0x0000000000002d20        0xe
+ .text          0x0000000000002d20        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x0000000000002d20                __fp_pscA
 
-.text           0x0000000000002d30        0xe
- .text          0x0000000000002d30        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x0000000000002d30                __fp_pscB
+.text           0x0000000000002d2e        0xe
+ .text          0x0000000000002d2e        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x0000000000002d2e                __fp_pscB
 
-.text           0x0000000000002d3e        0xe
- .text          0x0000000000002d3e        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x0000000000002d3e                __fp_zero
-                0x0000000000002d40                __fp_szero
+.text           0x0000000000002d3c        0xe
+ .text          0x0000000000002d3c        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x0000000000002d3c                __fp_zero
+                0x0000000000002d3e                __fp_szero
 
 .text.__vsprintf
-                0x0000000000002d4c        0xe
+                0x0000000000002d4a        0xe
  .text.__vsprintf
-                0x0000000000002d4c        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vsprintf.o)
-                0x0000000000002d4c                __vsprintf
+                0x0000000000002d4a        0xe c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__int_vsprintf.o)
+                0x0000000000002d4a                __vsprintf
 
-.text           0x0000000000002d5a        0xc
- .text          0x0000000000002d5a        0xc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x0000000000002d5a                __fp_inf
+.text           0x0000000000002d58        0xc
+ .text          0x0000000000002d58        0xc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x0000000000002d58                __fp_inf
 
-.text.libgcc    0x0000000000002d66        0xc
- .text.libgcc   0x0000000000002d66        0xc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x0000000000002d66                __tablejump2__
+.text.libgcc    0x0000000000002d64        0xc
+ .text.libgcc   0x0000000000002d64        0xc c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x0000000000002d64                __tablejump2__
 
 .text.UART_ResetBuffer
-                0x0000000000002d72        0xa
+                0x0000000000002d70        0xa
  .text.UART_ResetBuffer
-                0x0000000000002d72        0xa build/default/production/uart.o
-                0x0000000000002d72                UART_ResetBuffer
+                0x0000000000002d70        0xa build/default/production/uart.o
+                0x0000000000002d70                UART_ResetBuffer
 
-.text.twi_stop  0x0000000000002d7c        0x8
+.text.twi_stop  0x0000000000002d7a        0x8
  .text.twi_stop
-                0x0000000000002d7c        0x8 build/default/production/twi.o
-                0x0000000000002d7c                twi_stop
+                0x0000000000002d7a        0x8 build/default/production/twi.o
+                0x0000000000002d7a                twi_stop
 
 .text.OLED_Clear
-                0x0000000000002d84        0x8
+                0x0000000000002d82        0x8
  .text.OLED_Clear
-                0x0000000000002d84        0x8 build/default/production/ssd1306.o
-                0x0000000000002d84                OLED_Clear
+                0x0000000000002d82        0x8 build/default/production/ssd1306.o
+                0x0000000000002d82                OLED_Clear
 
-.text           0x0000000000002d8c        0x8
- .text          0x0000000000002d8c        0x8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x0000000000002d8c                __divsf3
+.text           0x0000000000002d8a        0x8
+ .text          0x0000000000002d8a        0x8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x0000000000002d8a                __divsf3
 
-.text           0x0000000000002d94        0x8
- .text          0x0000000000002d94        0x8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x0000000000002d94                __mulsf3
+.text           0x0000000000002d92        0x8
+ .text          0x0000000000002d92        0x8 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x0000000000002d92                __mulsf3
 
-.text           0x0000000000002d9c        0x6
- .text          0x0000000000002d9c        0x6 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x0000000000002d9c                __fp_nan
+.text           0x0000000000002d9a        0x6
+ .text          0x0000000000002d9a        0x6 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x0000000000002d9a                __fp_nan
 
-.text           0x0000000000002da2        0x4
- .text          0x0000000000002da2        0x4 D:/apps/MPLAB/packs/Microchip/ATmega_DFP/3.5.296/xc8/avr/lib/avr5/crtatmega324pb.o
-                0x0000000000002da2                __vector_38
-                0x0000000000002da2                __vector_22
-                0x0000000000002da2                __vector_1
-                0x0000000000002da2                __vector_32
-                0x0000000000002da2                __vector_34
-                0x0000000000002da2                __vector_24
-                0x0000000000002da2                __vector_12
-                0x0000000000002da2                __vector_46
-                0x0000000000002da2                __bad_interrupt
-                0x0000000000002da2                __vector_6
-                0x0000000000002da2                __vector_31
-                0x0000000000002da2                __vector_35
-                0x0000000000002da2                __vector_39
-                0x0000000000002da2                __vector_3
-                0x0000000000002da2                __vector_23
-                0x0000000000002da2                __vector_30
-                0x0000000000002da2                __vector_45
-                0x0000000000002da2                __vector_25
-                0x0000000000002da2                __vector_11
-                0x0000000000002da2                __vector_13
-                0x0000000000002da2                __vector_17
-                0x0000000000002da2                __vector_19
-                0x0000000000002da2                __vector_7
-                0x0000000000002da2                __vector_49
-                0x0000000000002da2                __vector_41
-                0x0000000000002da2                __vector_43
-                0x0000000000002da2                __vector_27
-                0x0000000000002da2                __vector_5
-                0x0000000000002da2                __vector_33
-                0x0000000000002da2                __vector_47
-                0x0000000000002da2                __vector_37
-                0x0000000000002da2                __vector_4
-                0x0000000000002da2                __vector_44
-                0x0000000000002da2                __vector_9
-                0x0000000000002da2                __vector_2
-                0x0000000000002da2                __vector_21
-                0x0000000000002da2                __vector_15
-                0x0000000000002da2                __vector_36
-                0x0000000000002da2                __vector_29
-                0x0000000000002da2                __vector_40
-                0x0000000000002da2                __vector_8
-                0x0000000000002da2                __vector_26
-                0x0000000000002da2                __vector_48
-                0x0000000000002da2                __vector_14
-                0x0000000000002da2                __vector_10
-                0x0000000000002da2                __vector_50
-                0x0000000000002da2                __vector_16
-                0x0000000000002da2                __vector_18
-                0x0000000000002da2                __vector_20
-                0x0000000000002da2                __vector_42
+.text           0x0000000000002da0        0x4
+ .text          0x0000000000002da0        0x4 D:/apps/MPLAB/packs/Microchip/ATmega_DFP/3.5.296/xc8/avr/lib/avr5/crtatmega324pb.o
+                0x0000000000002da0                __vector_38
+                0x0000000000002da0                __vector_22
+                0x0000000000002da0                __vector_1
+                0x0000000000002da0                __vector_32
+                0x0000000000002da0                __vector_34
+                0x0000000000002da0                __vector_24
+                0x0000000000002da0                __vector_12
+                0x0000000000002da0                __vector_46
+                0x0000000000002da0                __bad_interrupt
+                0x0000000000002da0                __vector_6
+                0x0000000000002da0                __vector_31
+                0x0000000000002da0                __vector_35
+                0x0000000000002da0                __vector_39
+                0x0000000000002da0                __vector_3
+                0x0000000000002da0                __vector_23
+                0x0000000000002da0                __vector_30
+                0x0000000000002da0                __vector_45
+                0x0000000000002da0                __vector_25
+                0x0000000000002da0                __vector_11
+                0x0000000000002da0                __vector_13
+                0x0000000000002da0                __vector_17
+                0x0000000000002da0                __vector_19
+                0x0000000000002da0                __vector_7
+                0x0000000000002da0                __vector_49
+                0x0000000000002da0                __vector_41
+                0x0000000000002da0                __vector_43
+                0x0000000000002da0                __vector_27
+                0x0000000000002da0                __vector_5
+                0x0000000000002da0                __vector_33
+                0x0000000000002da0                __vector_47
+                0x0000000000002da0                __vector_37
+                0x0000000000002da0                __vector_4
+                0x0000000000002da0                __vector_44
+                0x0000000000002da0                __vector_9
+                0x0000000000002da0                __vector_2
+                0x0000000000002da0                __vector_21
+                0x0000000000002da0                __vector_15
+                0x0000000000002da0                __vector_36
+                0x0000000000002da0                __vector_29
+                0x0000000000002da0                __vector_40
+                0x0000000000002da0                __vector_8
+                0x0000000000002da0                __vector_26
+                0x0000000000002da0                __vector_48
+                0x0000000000002da0                __vector_14
+                0x0000000000002da0                __vector_10
+                0x0000000000002da0                __vector_50
+                0x0000000000002da0                __vector_16
+                0x0000000000002da0                __vector_18
+                0x0000000000002da0                __vector_20
+                0x0000000000002da0                __vector_42
 
-.text._Exit     0x0000000000002da6        0x4
- .text._Exit    0x0000000000002da6        0x4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
-                0x0000000000002da6                _Exit
+.text._Exit     0x0000000000002da4        0x4
+ .text._Exit    0x0000000000002da4        0x4 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
+                0x0000000000002da4                _Exit
 
 .text.__dummy_fini
-                0x0000000000002daa        0x2
+                0x0000000000002da8        0x2
  .text.__dummy_fini
-                0x0000000000002daa        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000002daa                _fini
+                0x0000000000002da8        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000002da8                _fini
 
 .text.__dummy_funcs_on_exit
-                0x0000000000002dac        0x2
+                0x0000000000002daa        0x2
  .text.__dummy_funcs_on_exit
-                0x0000000000002dac        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000002dac                __funcs_on_exit
+                0x0000000000002daa        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000002daa                __funcs_on_exit
 
 .text.__dummy_simulator_exit
-                0x0000000000002dae        0x2
+                0x0000000000002dac        0x2
  .text.__dummy_simulator_exit
-                0x0000000000002dae        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000002dae                __simulator_exit
+                0x0000000000002dac        0x2 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000002dac                __simulator_exit
 
-.rodata.F6x8    0x0000000000800102      0x23a load address 0x0000000000002db0
+.rodata.F6x8    0x0000000000800102      0x23a load address 0x0000000000002dae
  .rodata.F6x8   0x0000000000800102      0x23a build/default/production/ssd1306.o
                 0x0000000000800102                F6x8
 
-.rodata         0x000000000080033c      0x166 load address 0x0000000000002fea
+.rodata         0x000000000080033c      0x166 load address 0x0000000000002fe8
  .rodata        0x000000000080033c      0x166 build/default/production/main_screen.o
 
 .rodata.digit_multipliers
-                0x00000000008004a2       0x20 load address 0x0000000000003150
+                0x00000000008004a2       0x20 load address 0x000000000000314e
  .rodata.digit_multipliers
                 0x00000000008004a2       0x20 build/default/production/main_screen.o
                 0x00000000008004a2                digit_multipliers
 
 .rodata.state_table
-                0x00000000008004e2       0x16 load address 0x0000000000003170
+                0x00000000008004e2       0x16 load address 0x000000000000316e
  .rodata.state_table
                 0x00000000008004e2       0x16 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
 
 .rodata.enc_table.1979
-                0x00000000008004f8       0x10 load address 0x0000000000003186
+                0x00000000008004f8       0x10 load address 0x0000000000003184
  .rodata.enc_table.1979
                 0x00000000008004f8       0x10 build/default/production/inputs.o
 
 .rodata.char_pos_map
-                0x0000000000800514        0x8 load address 0x0000000000003196
+                0x0000000000800514        0x8 load address 0x0000000000003194
  .rodata.char_pos_map
                 0x0000000000800514        0x8 build/default/production/main_screen.o
                 0x0000000000800514                char_pos_map
 
 .rodata.nuls.2781
-                0x000000000080051c        0x7 load address 0x000000000000319e
+                0x000000000080051c        0x7 load address 0x000000000000319c
  .rodata.nuls.2781
                 0x000000000080051c        0x7 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__fmt_s.o)
 
 .rodata.nilstr.2962
-                0x0000000000800523        0x6 load address 0x00000000000031a5
+                0x0000000000800523        0x6 load address 0x00000000000031a3
  .rodata.nilstr.2962
                 0x0000000000800523        0x6 c:/program files/microchip/xc8/v3.10/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(__printf_core.o)
 
 .data.current_freq
-                0x0000000000800529        0x4 load address 0x00000000000031ab
+                0x0000000000800529        0x4 load address 0x00000000000031a9
  .data.current_freq
                 0x0000000000800529        0x4 build/default/production/main_screen.o
                 0x0000000000800529                current_freq
 
 .data.vfo_b_freq
-                0x000000000080052d        0x4 load address 0x00000000000031af
+                0x000000000080052d        0x4 load address 0x00000000000031ad
  .data.vfo_b_freq
                 0x000000000080052d        0x4 build/default/production/main_screen.o
                 0x000000000080052d                vfo_b_freq
 
 .data.blink_state
-                0x0000000000800533        0x1 load address 0x00000000000031b3
+                0x0000000000800533        0x1 load address 0x00000000000031b1
  .data.blink_state
                 0x0000000000800533        0x1 build/default/production/main_screen.o
                 0x0000000000800533                blink_state
 
 .data.freq_digit_idx
-                0x0000000000800534        0x1 load address 0x00000000000031b4
+                0x0000000000800534        0x1 load address 0x00000000000031b2
  .data.freq_digit_idx
                 0x0000000000800534        0x1 build/default/production/main_screen.o
                 0x0000000000800534                freq_digit_idx
 
 .data.enc_prev_state
-                0x000000000080053a        0x1 load address 0x00000000000031b5
+                0x000000000080053a        0x1 load address 0x00000000000031b3
  .data.enc_prev_state
                 0x000000000080053a        0x1 build/default/production/inputs.o

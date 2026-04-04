@@ -61,10 +61,10 @@ uint8_t Get_Draw_Mode(uint8_t row_id) {
     if (ui_state == STATE_IDLE) return OLED_MODE_NORMAL;
     if (cursor_pos != row_id) return OLED_MODE_NORMAL;
     
-    if (ui_state == STATE_SELECT) return OLED_MODE_INVERT; // Invert colors when selected
+    if (ui_state == STATE_SELECT) return OLED_MODE_INVERT; 
     
-    // Blink selected item for Mode and Ctrl in EDIT state
-    if (ui_state == STATE_EDIT && row_id != 2) {
+    // ???? Mode (row_id == 0) ??? EDIT ?????
+    if (ui_state == STATE_EDIT && row_id == 0) {
         return blink_state ? OLED_MODE_INVERT : OLED_MODE_NORMAL;
     }
     
@@ -87,11 +87,11 @@ void Draw_Frequency(uint8_t y_page) {
         uint8_t char_mode = OLED_MODE_NORMAL;
         
         // 1. In SELECT state, invert the whole Frequency line if selected
-        if (ui_state == STATE_SELECT && cursor_pos == 2) {
+        if (ui_state == STATE_SELECT && cursor_pos == 1) {
             char_mode = OLED_MODE_INVERT;
         }
         // 2. In EDIT state, blink the currently selected digit
-        else if (ui_state == STATE_EDIT && cursor_pos == 2) {
+        else if (ui_state == STATE_EDIT && cursor_pos == 1) {
             if (i == char_pos_map[freq_digit_idx]) {
                 char_mode = blink_state ? OLED_MODE_INVERT : OLED_MODE_NORMAL;
             }
@@ -111,14 +111,14 @@ void Update_Right_Screen(void) {
     sprintf(buf, "Mode: [%s]    ", (radio_mode == MODE_RX) ? "RX" : "TX");
     OLED_ShowString(SCREEN_R_ADDR, 0, 0, buf, Get_Draw_Mode(0));
     
-    // 1: Ctrl
+    // 1: Ctrl (??????? NORMAL ??????????)
     sprintf(buf, "Ctrl: [%s]  ", (ctrl_source == CTRL_USER) ? "USER" : "USB ");
-    OLED_ShowString(SCREEN_R_ADDR, 0, 2, buf, Get_Draw_Mode(1));
+    OLED_ShowString(SCREEN_R_ADDR, 0, 2, buf, OLED_MODE_NORMAL);
     
-    // 2: Freq Label (Fixed string)
+    // 2: Freq Label 
     OLED_ShowString(SCREEN_R_ADDR, 0, 4, "Current Freq:     ", OLED_MODE_NORMAL);
     
-    // 3: Frequency value (Dynamic string)
+    // 3: Frequency ?
     Draw_Frequency(6);
 }
 
@@ -205,6 +205,7 @@ void Update_Si5351_Freq(uint32_t target_freq) {
 // ================= CAT ?????? =================
 void Parse_CAT_Command(char* cmd) {
     char response[64];
+    ctrl_source = CTRL_USB; 
 
     // 1. ?? TX ?? (??????)
     if (strncmp(cmd, "TX", 2) == 0) {
@@ -329,7 +330,7 @@ int main(void) {
                     force_update = true;
                 } 
                 else if (event == JOY_DOWN) {
-                    if (cursor_pos < 2) cursor_pos++; // Max index is 2 (Freq)
+                    if (cursor_pos < 1) cursor_pos++; // Max index is 2 (Freq)
                     force_update = true;
                 }
                 else if (event == JOY_PRESS) {
@@ -365,7 +366,7 @@ int main(void) {
                 }
                 
                 // --- B. Edit Frequency (2) ---
-                else if (cursor_pos == 2) {
+                else if (cursor_pos == 1) {
                     // Move cursor left/right
                     if (event == JOY_LEFT) {
                         if (freq_digit_idx > 0) freq_digit_idx--;
