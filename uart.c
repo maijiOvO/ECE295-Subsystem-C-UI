@@ -7,23 +7,23 @@ volatile uint8_t rx_index = 0;
 volatile bool cmd_ready = false;
 
 void UART_Init(void) {
-    // 1MHz 主频下，开启 U2X0 双速模式，9600 波特率的 UBRR 值为 12
+    // 1MHz ????9600 ???? UBRR ?? 12
     UBRR0H = 0;
     UBRR0L = 12;
 
-    // 开启双速模式 (极大降低 1MHz 主频下的波特率误差)
-    UCSR0A |= (1 << U2X0);
+    // ?????? (????? 0)
+    UCSR0A |= (1 << U2X);
 
-    // 允许接收(RXEN0)、允许发送(TXEN0)、开启接收完成中断(RXCIE0)
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);
+    // ????(RXEN)?????(TXEN)?????????(RXCIE)
+    UCSR0B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
 
-    // 设置帧格式: 8个数据位，无校验位，1个停止位
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+    // ?????: 8??????????1????
+    UCSR0C = (1 << UCSZ1) | (1 << UCSZ0);
 }
 
 void UART_SendChar(char c) {
-    // 等待发送缓冲区清空
-    while (!(UCSR0A & (1 << UDRE0)));
+    // ????????? (????? 0)
+    while (!(UCSR0A & (1 << UDRE)));
     UDR0 = c;
 }
 

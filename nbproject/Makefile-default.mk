@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main_screen.c twi.c ssd1306.c inputs.c Si5351.c
+SOURCEFILES_QUOTED_IF_SPACED=main_screen.c twi.c ssd1306.c inputs.c Si5351.c uart.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_screen.o ${OBJECTDIR}/twi.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/inputs.o ${OBJECTDIR}/Si5351.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main_screen.o.d ${OBJECTDIR}/twi.o.d ${OBJECTDIR}/ssd1306.o.d ${OBJECTDIR}/inputs.o.d ${OBJECTDIR}/Si5351.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_screen.o ${OBJECTDIR}/twi.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/inputs.o ${OBJECTDIR}/Si5351.o ${OBJECTDIR}/uart.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main_screen.o.d ${OBJECTDIR}/twi.o.d ${OBJECTDIR}/ssd1306.o.d ${OBJECTDIR}/inputs.o.d ${OBJECTDIR}/Si5351.o.d ${OBJECTDIR}/uart.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main_screen.o ${OBJECTDIR}/twi.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/inputs.o ${OBJECTDIR}/Si5351.o
+OBJECTFILES=${OBJECTDIR}/main_screen.o ${OBJECTDIR}/twi.o ${OBJECTDIR}/ssd1306.o ${OBJECTDIR}/inputs.o ${OBJECTDIR}/Si5351.o ${OBJECTDIR}/uart.o
 
 # Source Files
-SOURCEFILES=main_screen.c twi.c ssd1306.c inputs.c Si5351.c
+SOURCEFILES=main_screen.c twi.c ssd1306.c inputs.c Si5351.c uart.c
 
 
 
@@ -118,6 +118,12 @@ ${OBJECTDIR}/Si5351.o: Si5351.c  .generated_files/flags/default/31aec0043c96d5cf
 	@${RM} ${OBJECTDIR}/Si5351.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG -D__MPLAB_DEBUGGER_PK5=1 -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/Si5351.o.d" -MT "${OBJECTDIR}/Si5351.o.d" -MT ${OBJECTDIR}/Si5351.o -o ${OBJECTDIR}/Si5351.o Si5351.c 
 	
+${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/6fd3d19a47729a6e67bf6ce3a2b0547fdecfb3bc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/uart.o.d 
+	@${RM} ${OBJECTDIR}/uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG -D__MPLAB_DEBUGGER_PK5=1 -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/uart.o.d" -MT "${OBJECTDIR}/uart.o.d" -MT ${OBJECTDIR}/uart.o -o ${OBJECTDIR}/uart.o uart.c 
+	
 else
 ${OBJECTDIR}/main_screen.o: main_screen.c  .generated_files/flags/default/243360090a68aa24f36f4cf03e421df5db01e259 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -148,6 +154,12 @@ ${OBJECTDIR}/Si5351.o: Si5351.c  .generated_files/flags/default/1a8f2f75f3555b2d
 	@${RM} ${OBJECTDIR}/Si5351.o.d 
 	@${RM} ${OBJECTDIR}/Si5351.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/Si5351.o.d" -MT "${OBJECTDIR}/Si5351.o.d" -MT ${OBJECTDIR}/Si5351.o -o ${OBJECTDIR}/Si5351.o Si5351.c 
+	
+${OBJECTDIR}/uart.o: uart.c  .generated_files/flags/default/99b5f394e354689c53a91d1ebda1404db376aef7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/uart.o.d 
+	@${RM} ${OBJECTDIR}/uart.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/uart.o.d" -MT "${OBJECTDIR}/uart.o.d" -MT ${OBJECTDIR}/uart.o -o ${OBJECTDIR}/uart.o uart.c 
 	
 endif
 

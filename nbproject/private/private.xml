@@ -11,6 +11,7 @@
             <file>file:/D:/Desktop/MPLAB/screen.X/inputs.c</file>
             <file>file:/D:/Desktop/MPLAB/screen.X/Si5351.c</file>
             <file>file:/D:/Desktop/MPLAB/screen.X/ssd1306.c</file>
+            <file>file:/D:/Desktop/MPLAB/screen.X/uart.c</file>
             <file>file:/D:/Desktop/MPLAB/screen.X/twi.c</file>
         </group>
     </open-files>
