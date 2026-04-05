@@ -193,10 +193,10 @@ void Update_Si5351_Freq(uint32_t target_freq) {
 
     // 5. Set 90 degree phase offset (1/4 period) for CLK2
     uint8_t phase_offset = (uint8_t)divider;
-    si5351_write_reg(SI5351_REGISTER_165_CLK0_INITIAL_PHASE_OFFSET, 0);
+    si5351_write_reg(SI5351_REGISTER_165_CLK0_INITIAL_PHASE_OFFSET, phase_offset);
     
     // Write to REGISTER_167 to set CLK2 offset
-    si5351_write_reg(SI5351_REGISTER_166_CLK1_INITIAL_PHASE_OFFSET, phase_offset);
+    si5351_write_reg(SI5351_REGISTER_166_CLK1_INITIAL_PHASE_OFFSET, 0);
 
     // 6. Reset PLL A to apply phase changes
     si5351_write_reg(SI5351_REGISTER_177_PLL_RESET, SI5351_PLL_RESET_A);
@@ -297,7 +297,12 @@ int main(void) {
     while(1) {
         InputEvent_t event = Inputs_Scan();
         bool force_update = false;
-
+        if (event != EVENT_NONE) {
+            if (ctrl_source != CTRL_USER) {
+                ctrl_source = CTRL_USER;
+                force_update = true;
+            }
+        }
         if (cmd_ready) {
             // ????????????????
             Parse_CAT_Command((char*)rx_buffer);
@@ -345,7 +350,7 @@ int main(void) {
                 
             case STATE_EDIT:
                 // --- A. Edit Mode/Ctrl (0, 1) ---
-                if (cursor_pos == 0 || cursor_pos == 1) {
+                if (cursor_pos == 0) {
                     if (event == ENC_CW || event == ENC_CCW) {
                         if (cursor_pos == 0) {
                             // Toggle state
@@ -358,7 +363,7 @@ int main(void) {
                                 TXEN_PORT &= ~(1 << TXEN_PIN); // Set Low (0V) for TX
                             }
                         }
-                        if (cursor_pos == 1) ctrl_source = (ctrl_source == CTRL_USER) ? CTRL_USB : CTRL_USER;
+                        //if (cursor_pos == 1) ctrl_source = (ctrl_source == CTRL_USER) ? CTRL_USB : CTRL_USER;
                         
                         blink_state = true; blink_timer = 0; force_update = true;
                     }
