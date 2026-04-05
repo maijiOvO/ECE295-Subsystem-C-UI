@@ -2,29 +2,25 @@
 #include <avr/interrupt.h>
 #include "uart.h"
 
-volatile char rx_buffer[32];
-volatile uint8_t rx_index = 0;
-volatile bool cmd_ready = false;
+// ???? 64 ????????
+#define RX_BUF_SIZE 64
+volatile char rx_ring[RX_BUF_SIZE];
+volatile uint8_t rx_head = 0;
+volatile uint8_t rx_tail = 0;
 
 void UART_Init(void) {
-    // 1MHz ????9600 ???? UBRR ?? 12
     UBRR1H = 0;
     UBRR1L = 12;
-
-    // ?????? (????? 0)
+    
+    // ???????1????????
     UCSR1A |= (1 << U2X);
-
-    // ????(RXEN)?????(TXEN)?????????(RXCIE)
     UCSR1B = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
-
-    // ?????: 8??????????1????
     UCSR1C = (1 << UCSZ1) | (1 << UCSZ0);
 }
 
 void UART_SendChar(char c) {
-    // ????????? (????? 0)
     while (!(UCSR1A & (1 << UDRE)));
-    UDR1 = c;
+    UDR1 = c;  
 }
 
 void UART_SendString(const char* str) {
@@ -33,27 +29,46 @@ void UART_SendString(const char* str) {
     }
 }
 
-void UART_ResetBuffer(void) {
-    rx_index = 0;
-    cmd_ready = false;
+// ??????????????????';'???
+bool UART_GetCommand(char* out_cmd) {
+    uint8_t temp_tail = rx_tail;
+    bool found = false;
+    
+    // 1. ?????????????? ';'
+    while (temp_tail != rx_head) {
+        if (rx_ring[temp_tail] == ';') {
+            found = true;
+            break;
+        }
+        temp_tail = (temp_tail + 1) % RX_BUF_SIZE;
+    }
+
+    if (!found) return false;
+
+    // 2. ???????????????????
+    uint8_t i = 0;
+    while (rx_tail != rx_head) {
+        char c = rx_ring[rx_tail];
+        rx_tail = (rx_tail + 1) % RX_BUF_SIZE;
+        
+        if (c != '\r' && c != '\n') { 
+            out_cmd[i++] = c;
+        }
+        
+        if (c == ';') {
+            out_cmd[i] = '\0'; 
+            return true;       
+        }
+    }
+    return false;
 }
 
-// 串口接收中断服务程序 (收到一个字符就会自动触发)
+// ??????
 ISR(USART1_RX_vect) {
     char c = UDR1;
-    
-    // 如果主循环还没处理完上一条命令，丢弃新数据
-    if (cmd_ready) return; 
-
-    // CAT协议规定所有命令以分号 ';' 结尾
-    if (c == ';') {
-        rx_buffer[rx_index] = '\0'; // 加上字符串结尾符
-        cmd_ready = true;           // 立起Flag，通知主循环
-    } 
-    // 忽略回车和换行符，防止干扰
-    else if (c != '\r' && c != '\n') { 
-        if (rx_index < sizeof(rx_buffer) - 1) {
-            rx_buffer[rx_index++] = c;
-        }
+    uint8_t next_head = (rx_head + 1) % RX_BUF_SIZE;
+    if (next_head != rx_tail) { 
+        rx_ring[rx_head] = c;
+        rx_head = next_head;
     }
 }
