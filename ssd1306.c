@@ -218,3 +218,15 @@ void OLED_Update(uint8_t addr) {
     }
     twi_stop();
 }
+
+void OLED_Sleep(uint8_t addr) {
+    Write_Cmd(addr, 0xAE);  // Display OFF
+    Write_Cmd(addr, 0x8D);  // Charge Pump
+    Write_Cmd(addr, 0x10);  // Disable Charge Pump
+}
+
+void OLED_Wake(uint8_t addr) {
+    Write_Cmd(addr, 0x8D);  // Charge Pump
+    Write_Cmd(addr, 0x14);  // Enable Charge Pump
+    Write_Cmd(addr, 0xAF);  // Display ON
+}

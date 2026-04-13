@@ -1,15 +1,19 @@
 #ifndef F_CPU
-#define F_CPU 1000000UL 
+#define F_CPU 8000000UL 
 #endif
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdbool.h>
 #include "inputs.h"
 
 static uint8_t enc_prev_state = 0x03;
 static int8_t  enc_counter = 0;
-// ????????
-static int8_t enc_accum = 0; 
+static int8_t  enc_accum = 0; 
+static bool    joy_at_center = true; 
+static uint8_t joy_hold_counter = 0;
+
+#define JOY_HOLD_THRESHOLD 150 
 
 void ADC_Init() {
     ADMUX |= (1 << REFS0);
@@ -19,7 +23,7 @@ void ADC_Init() {
 uint16_t ADC_Read(uint8_t channel) {
     channel &= 0x07;
     ADMUX = (ADMUX & 0xF0) | channel;
-    _delay_us(20); 
+    _delay_us(50); 
     ADCSRA |= (1 << ADSC);
     while (ADCSRA & (1 << ADSC));
     return ADC;
@@ -88,8 +92,18 @@ InputEvent_t Inputs_Scan(void) {
     // 3. ???? (PB3)
     // ==========================================
     if (!(PINA & (1 << JOY_SW_PIN))) {
-        _delay_ms(20);
-        if (!(PINA & (1 << JOY_SW_PIN))) return JOY_PRESS;
+        if (joy_hold_counter < JOY_HOLD_THRESHOLD) {
+            joy_hold_counter++;
+        }
+        if (joy_hold_counter == JOY_HOLD_THRESHOLD) {
+            return JOY_HOLD;
+        }
+        if (joy_hold_counter == 1) {
+            _delay_ms(20);
+            if (!(PINA & (1 << JOY_SW_PIN))) return JOY_PRESS;
+        }
+    } else {
+        joy_hold_counter = 0;
     }
 
     // ==========================================
@@ -98,15 +112,28 @@ InputEvent_t Inputs_Scan(void) {
     uint16_t x_val = ADC_Read(JOY_X_CH);
     uint16_t y_val = ADC_Read(JOY_Y_CH);
     
-//    if (x_val < 100) return JOY_LEFT;// for formal design
-//    if (x_val > 900) return JOY_RIGHT;
-//    if (y_val < 100) return JOY_UP;
-//    if (y_val > 900) return JOY_DOWN;
-    
-    if (x_val < 100) return JOY_RIGHT;// for temp prototype
-    if (x_val > 900) return JOY_LEFT;
-    if (y_val < 100) return JOY_DOWN;
-    if (y_val > 900) return JOY_UP;
+    if (joy_at_center) {
+        if (x_val < 100) {
+            joy_at_center = false;
+            return JOY_RIGHT;
+        }
+        if (x_val > 900) {
+            joy_at_center = false;
+            return JOY_LEFT;
+        }
+        if (y_val < 100) {
+            joy_at_center = false;
+            return JOY_DOWN;
+        }
+        if (y_val > 900) {
+            joy_at_center = false;
+            return JOY_UP;
+        }
+    } else {
+        if (x_val >= 400 && x_val <= 600 && y_val >= 400 && y_val <= 600) {
+            joy_at_center = true;
+        }
+    }
     
     return EVENT_NONE;
 }

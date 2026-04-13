@@ -1,4 +1,4 @@
-#define F_CPU 1000000UL
+#define F_CPU 8000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
@@ -13,6 +13,124 @@
 #include <avr/interrupt.h> // 需要用到 sei()
 #include "uart.h"
 
+// VCO frequency measurement
+volatile uint32_t vco_freq_hz = 0;
+//volatile uint16_t capture_prev_3 = 0;
+//volatile bool capture_valid_3 = false;
+volatile uint16_t capture_count = 0;
+volatile uint16_t capture_period = 0;
+volatile uint16_t vco_update_counter = 0;
+volatile bool dirty_vco = false;
+
+// 2-stage IIR filter for VCO frequency
+//volatile uint32_t vco_acc1 = 0;
+//volatile uint32_t vco_acc2 = 0;
+//volatile uint32_t vco_acc3 = 0;
+//volatile uint32_t vco_acc4 = 0;
+//volatile uint32_t vco_acc5 = 0;
+//volatile uint32_t vco_acc6 = 0;
+
+// Delta-sigma PWM variables
+// Target split for speed
+volatile uint16_t pwm_duty_int = 0;   // The "base" duty (0-511)
+volatile uint32_t pwm_duty_frac = 0;  // The "error" to accumulate (23-bit)
+volatile uint32_t pwm_error_acc = 0;  // The running integrator
+
+void Set_PWM_Duty(uint16_t duty_int, uint32_t duty_frac) {
+    cli(); // Disable interrupts briefly to write 32-bit values safely
+    pwm_duty_int = duty_int;
+    pwm_duty_frac = duty_frac & 0x7FFFFF; // Ensure it stays 23-bit
+    sei();
+}
+
+ISR(TIMER4_COMPB_vect) {
+    // 1. Accumulate the fractional error
+    pwm_error_acc += pwm_duty_frac;
+
+    // 2. Check for overflow (The "Threshold")
+    // If bit 23 is set, we've "overflowed" 1.0
+    if (pwm_error_acc & 0x800000UL) {
+        // Carry bit is set: Output = Base + 1
+        OCR4B = pwm_duty_int + 1;
+        // "Integrate the negative": Remove the 1.0 we just outputted
+        pwm_error_acc &= 0x7FFFFFUL; 
+    } else {
+        // No carry: Output = Base
+        OCR4B = pwm_duty_int;
+    }
+}
+// Ensure these are global or static so they persist between ISR calls
+volatile uint32_t vco_acc1 = 0, vco_acc2 = 0, vco_acc3 = 0, vco_acc4 = 0;
+volatile uint16_t capture_prev_3 = 0;
+volatile bool capture_valid_3 = false;
+volatile uint32_t period_accum = 0;
+volatile uint8_t period_count = 0;
+
+ISR(TIMER3_CAPT_vect) {
+    capture_count++;
+    PORTB ^= (1 << PB0); // Toggle status LED/Pin
+    
+    uint16_t capture_now = ICR3;
+    
+    if (capture_valid_3) {
+        uint16_t period;
+        // Handle Timer Overflow/Wrap-around
+        if (capture_now >= capture_prev_3) {
+            period = capture_now - capture_prev_3;
+        } else {
+            period = (uint16_t)(65536U - capture_prev_3 + capture_now);
+        }
+
+        if (period != 0) {
+            capture_period = period;
+            
+            // Accumulate 32 periods before computing frequency
+            period_accum += period;
+            period_count++;
+            
+            if (period_count >= 32) {
+                // Use total time: freq = 8000000 * 32 / period_accum, then * 4096 for VCO
+                uint32_t raw_vco = ((8000000UL) / period_accum) * 4096UL * 32UL;
+                period_accum = 0;
+                period_count = 0;
+                
+                // FILTER STRENGTH (N)
+                const uint8_t N = 6;
+                
+                // 4-Stage Cascaded IIR with Unity Gain
+                // Logic: acc = acc + (input - (acc >> N))
+                
+                // Stage 1
+                vco_acc1 += (raw_vco - (vco_acc1 >> N));
+                uint32_t out1 = vco_acc1 >> N;
+
+                // Stage 2
+                vco_acc2 += (out1 - (vco_acc2 >> N));
+                uint32_t out2 = vco_acc2 >> N;
+
+                // Stage 3
+                vco_acc3 += (out2 - (vco_acc3 >> N));
+                uint32_t out3 = vco_acc3 >> N;
+
+                // Stage 4
+                vco_acc4 += (out3 - (vco_acc4 >> N));
+                
+                // Final smoothed output
+                vco_freq_hz = vco_acc4 >> N;
+            }
+        }
+    }
+    
+    capture_prev_3 = capture_now;
+    capture_valid_3 = true;
+    
+    // Update display/flag counter
+    vco_update_counter++;
+    if (vco_update_counter >= 200) {
+        vco_update_counter = 0;
+        dirty_vco = true;
+    }
+}
 uint32_t vfo_b_freq = 14000000UL;
 
 // ================= UI Definitions =================
@@ -140,11 +258,37 @@ void Update_Left_Screen(InputEvent_t event) {
             case JOY_LEFT:  OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: LEFT", OLED_MODE_INVERT); break;
             case JOY_RIGHT: OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: RIGHT", OLED_MODE_INVERT); break;
             case JOY_PRESS: OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: PRESS", OLED_MODE_INVERT); break;
+            case JOY_HOLD:  OLED_ShowString(SCREEN_L_ADDR, 0, 3, "JOY: HOLD", OLED_MODE_INVERT); break;
             case ENC_CW:    OLED_ShowString(SCREEN_L_ADDR, 0, 3, "ENC: CW >>", OLED_MODE_INVERT); break;
             case ENC_CCW:   OLED_ShowString(SCREEN_L_ADDR, 0, 3, "ENC: << CCW", OLED_MODE_INVERT); break;
             case ENC_PRESS: OLED_ShowString(SCREEN_L_ADDR, 0, 3, "ENC: PRESS", OLED_MODE_INVERT); break;
             default: break;
         }
+    }
+    (void)event; // suppress unused warning
+    if (dirty_vco) {
+        uint16_t per_val = capture_period;
+        uint32_t vco_val = vco_freq_hz;
+        
+        uint32_t int_part = vco_val / 1000000;
+        uint32_t frac_part = vco_val % 1000000;
+        uint32_t frac_high = frac_part / 1000;
+        uint32_t frac_low = frac_part % 1000;
+        // Format: XX.XXX.XXX
+        buf[0] = 'V'; buf[1] = 'C'; buf[2] = 'O'; buf[3] = ':';
+        if (int_part < 10) { buf[4] = '0'; buf[5] = '0' + int_part; }
+        else { buf[4] = '0' + (int_part / 10); buf[5] = '0' + (int_part % 10); }
+        buf[6] = '.';
+        buf[7] = '0' + (frac_high / 100); buf[8] = '0' + ((frac_high / 10) % 10); buf[9] = '0' + (frac_high % 10);
+        buf[10] = '.';
+        buf[11] = '0' + (frac_low / 100); buf[12] = '0' + ((frac_low / 10) % 10); buf[13] = '0' + (frac_low % 10);
+        buf[14] = '\0';
+        OLED_ShowString(SCREEN_L_ADDR, 0, 3, buf, OLED_MODE_NORMAL);
+        
+        sprintf(buf, "PER: %u", per_val);
+        OLED_ShowString(SCREEN_L_ADDR, 0, 4, buf, OLED_MODE_NORMAL);
+        
+        dirty_vco = false;
     }
 }
 
@@ -270,7 +414,10 @@ void Parse_CAT_Command(char* cmd) {
 }
 
 int main(void) {
-
+    // Divide 16MHz clock by 2 → 8MHz system clock
+    CLKPR = (1 << CLKPCE);
+    CLKPR = (1 << CLKPS0);
+    
     UART_Init();   // 初始化串口
     sei();         // 开启全局中断（极其重要，否则接收不到数据）
     UART_SendString("FLRTRX Radio Initialized!\r\n"); // 启动时给电脑发个问候语
@@ -288,6 +435,30 @@ int main(void) {
     
     TXEN_DDR |= (1 << TXEN_PIN);  // Set PB4 as output
     TXEN_PORT |= (1 << TXEN_PIN); // Default to RX Mode (High = 3.3V)
+    
+    DDRB |= (1 << PB0); // Set PB0 as output for debug LED
+    PORTB |= (1 << PB0); // Initial high
+    
+    // ================= Fast PWM on PB7 (OC4B) =================
+    // 9-bit Fast PWM: F PWM = 8MHz / 512 = 15.6 kHz
+    DDRB |= (1 << PB7); // Set PB7 as output for OC4B
+    PORTB |= (1 << PB7); // Initial high
+    ICR4 = 511; // TOP for 9-bit (512 counts)
+    OCR4B = 256; // 50% duty cycle (256/512)
+    TCCR4A = (1 << COM4B1) | (1 << WGM41); // OC4B non-inverted, Fast PWM
+    TCCR4B = (1 << WGM43) | (1 << WGM42) | (1 << CS40); // Fast PWM, prescaler 1
+    TIMSK4 = (1 << OCIE4B); // Enable compare match B interrupt
+    
+    // Initialize delta-sigma PWM with 40% duty (204/512)
+    Set_PWM_Duty(256, 0);
+    pwm_error_acc = ((uint32_t)204 << 23); // Initialize accumulator
+    
+    // ================= VCO Frequency Measurement (Timer3 ICP) =================
+    // Use PE6 for ICP3 (or PB5 if wired differently)
+    DDRB &= ~(1 << PB5); // PB5 as input
+    PORTB &= ~(1 << PB5); // Disable pullup
+    TCCR3B = (1 << ICES3) | (1 << CS30); // Rising edge, prescaler 1
+    TIMSK3 = (1 << ICIE3); // Enable input capture interrupt
     
     Update_Right_Screen();
     Update_Left_Screen(EVENT_NONE);
@@ -417,9 +588,9 @@ int main(void) {
 
         // ================= Screen Refresh =================
         screen_refresh_timer++;
-        if (force_update || event != EVENT_NONE || screen_refresh_timer >= 50) {
+        if (force_update || event != EVENT_NONE || screen_refresh_timer >= 50 || dirty_vco) {
             Update_Right_Screen();
-            if (event != EVENT_NONE) Update_Left_Screen(event);
+            if (event != EVENT_NONE || dirty_vco) Update_Left_Screen(event);
             screen_refresh_timer = 0;
         }
 

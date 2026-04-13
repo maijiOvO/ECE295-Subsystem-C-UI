@@ -1,5 +1,5 @@
-build/default/production/inputs.o.d build/default/production/inputs.o: \
- inputs.c c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\io.h \
+build/default/debug/twi.o.d build/default/debug/twi.o: twi.c twi.h \
+ c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\io.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\sfr_defs.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\inttypes.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\features.h \
@@ -12,11 +12,9 @@ build/default/production/inputs.o.d build/default/production/inputs.o: \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\common.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\lock.h \
- c:\program\ files\microchip\xc8\v3.10\avr\avr\include\util\delay.h \
- c:\program\ files\microchip\xc8\v3.10\avr\avr\include\util\delay_basic.h \
- c:\program\ files\microchip\xc8\v3.10\avr\avr\include\math.h \
- c:\program\ files\microchip\xc8\v3.10\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
- inputs.h
+ c:\program\ files\microchip\xc8\v3.10\avr\lib\gcc\avr\5.4.0\include\stdbool.h
+
+twi.h:
 
 c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\io.h:
 
@@ -44,12 +42,4 @@ c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\fuse.h:
 
 c:\program\ files\microchip\xc8\v3.10\avr\avr\include\avr\lock.h:
 
-c:\program\ files\microchip\xc8\v3.10\avr\avr\include\util\delay.h:
-
-c:\program\ files\microchip\xc8\v3.10\avr\avr\include\util\delay_basic.h:
-
-c:\program\ files\microchip\xc8\v3.10\avr\avr\include\math.h:
-
 c:\program\ files\microchip\xc8\v3.10\avr\lib\gcc\avr\5.4.0\include\stdbool.h:
-
-inputs.h:

@@ -19,5 +19,7 @@ void OLED_SetPos(uint8_t addr, uint8_t x, uint8_t y);
 
 void OLED_ShowChar(uint8_t addr, uint8_t x, uint8_t y, char chr, uint8_t mode);
 void OLED_ShowString(uint8_t addr, uint8_t x, uint8_t y, char *str, uint8_t mode);
+void OLED_Sleep(uint8_t addr);
+void OLED_Wake(uint8_t addr);
 
 #endif

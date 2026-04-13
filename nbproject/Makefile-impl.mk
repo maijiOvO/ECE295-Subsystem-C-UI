@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=screen.X
+PROJECTNAME=ECE295-Subsystem-C-UI
 
 # Active Configuration
 DEFAULTCONF=default

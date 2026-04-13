@@ -197,7 +197,7 @@
         <property key="communication.activationmode" value="nohv"/>
         <property key="communication.interface" value="jtag"/>
         <property key="communication.interface.jtag" value="2wire"/>
-        <property key="communication.speed" value="0.1"/>
+        <property key="communication.speed" value="1"/>
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
@@ -262,7 +262,7 @@
         <property key="communication.activationmode" value="nohv"/>
         <property key="communication.interface" value="jtag"/>
         <property key="communication.interface.jtag" value="2wire"/>
-        <property key="communication.speed" value="0.1"/>
+        <property key="communication.speed" value="1"/>
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
